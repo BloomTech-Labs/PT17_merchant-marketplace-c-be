@@ -3,9 +3,8 @@ const authRequired = require('../middleware/authRequired');
 const Model = require('../globalModel');
 const router = express.Router();
 
-// GET an items
-
-router.get('/:profileID/products', authRequired, async (req, res) => {
+// GET items
+router.get('/:profileID/', authRequired, async (req, res) => {
   const { profileID } = req.params;
   const response = await Model.findAllProducts('item', profileID);
   if (response) {
@@ -15,6 +14,16 @@ router.get('/:profileID/products', authRequired, async (req, res) => {
   }
 });
 
+// get one item
+router.get('/:productID', authRequired, async (req, res) => {
+  const { productID } = req.params;
+  const response = await Model.findById('item', productID);
+  if (response) {
+    res.status(200).json(response);
+  } else {
+    res.status(404).json({ message: 'You have not created any products' });
+  }
+});
 router.post('/', authRequired, async (req, res) => {
   const data = req.body;
   const response = await Model.create('item', data);
