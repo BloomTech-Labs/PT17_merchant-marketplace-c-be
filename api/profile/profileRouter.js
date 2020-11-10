@@ -1,6 +1,6 @@
 const express = require('express');
 const authRequired = require('../middleware/authRequired');
-const Profiles = require('./profileModel');
+const Model = require('../globalModel');
 const router = express.Router();
 
 /**
@@ -63,7 +63,7 @@ const router = express.Router();
  *        $ref: '#/components/responses/UnauthorizedError'
  */
 router.get('/', authRequired, function (req, res) {
-  Profiles.findAll()
+  Model.findAll()
     .then((profiles) => {
       res.status(200).json(profiles);
     })
@@ -110,7 +110,7 @@ router.get('/', authRequired, function (req, res) {
  */
 router.get('/:id', authRequired, function (req, res) {
   const id = String(req.params.id);
-  Profiles.findById(id)
+  Model.findById(id)
     .then((profile) => {
       if (profile) {
         res.status(200).json(profile);
@@ -164,10 +164,10 @@ router.post('/', authRequired, async (req, res) => {
   if (profile) {
     const id = profile.id || 0;
     try {
-      await Profiles.findById(id).then(async (pf) => {
+      await Model.findById(id).then(async (pf) => {
         if (pf == undefined) {
           //profile not found so lets insert it
-          await Profiles.create(profile).then((profile) =>
+          await Model.create(profile).then((profile) =>
             res
               .status(200)
               .json({ message: 'profile created', profile: profile[0] })
@@ -218,13 +218,13 @@ router.post('/', authRequired, async (req, res) => {
  *                profile:
  *                  $ref: '#/components/schemas/Profile'
  */
-router.put('/', authRequired, function(req, res) {
+router.put('/', authRequired, function (req, res) {
   const profile = req.body;
   if (profile) {
     const id = profile.id || 0;
-    Profiles.findById(id)
+    Model.findById(id)
       .then(
-        Profiles.update(id, profile)
+        Model.update(id, profile)
           .then((updated) => {
             res
               .status(200)
@@ -275,11 +275,11 @@ router.put('/', authRequired, function(req, res) {
  *                profile:
  *                  $ref: '#/components/schemas/Profile'
  */
-router.delete('/:id', authRequired, function(req, res) {
+router.delete('/:id', authRequired, function (req, res) {
   const id = req.params.id;
   try {
-    Profiles.findById(id).then((profile) => {
-      Profiles.remove(profile.id).then(() => {
+    Model.findById(id).then((profile) => {
+      Model.remove(profile.id).then(() => {
         res
           .status(200)
           .json({ message: `Profile '${id}' was deleted.`, profile: profile });
