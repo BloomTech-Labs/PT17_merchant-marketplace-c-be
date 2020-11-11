@@ -22,7 +22,7 @@ exports.up = function(knex) {
   
     return knex.schema.createTable('photo', tb => {
         tb.increments();
-        tb.string('url' 255);
+        tb.string('url', 255);
         tb.integer('item_id')
             .unsigned()
             .notNullable()
@@ -34,7 +34,7 @@ exports.up = function(knex) {
 
     return knex.schema.createTable('category', tb => {
         tb.increments();
-        tb.string('name' 255);
+        tb.string('name', 255);
     });
 
     return knex.schema.createTable('category_item', tb => {
@@ -57,7 +57,7 @@ exports.up = function(knex) {
 
     return knex.schema.createTable('tag', tb => {
         tb.increments();
-        tb.string('name' 255);
+        tb.string('name', 255);
     });
 
     return knex.schema.createTable('tag_item', tb => {
