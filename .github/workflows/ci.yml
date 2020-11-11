@@ -20,14 +20,14 @@ jobs:
     runs-on: ubuntu-latest
 
     # The steps for the job, executed in sequence
-    steps:	
+    steps:
       # A GitHub action for checking out the current branch
       - uses: actions/checkout@v2
 
       # A GitHub action to setup Node.js
       - uses: actions/setup-node@v1
         with:
-          node-version: "12"
+          node-version: '12'
 
       # Run the NPM install command before proceeding
       - run: npm install
@@ -35,4 +35,3 @@ jobs:
       - run: npm run lint
 
       - run: cp .env.sample .env
-
