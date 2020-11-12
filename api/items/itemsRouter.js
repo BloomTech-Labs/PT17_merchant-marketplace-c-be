@@ -24,15 +24,13 @@ router.get('/:productID', authRequired, async (req, res) => {
     res.status(404).json({ message: 'You have not created any products' });
   }
 });
-router.post('/', authRequired, async (req, res) => {
-  const data = req.body;
-  const response = await Model.create('item', data);
+router.post('/:profileID', authRequired, async (req, res) => {
+  const { profileID } = req.params;
+  const response = await Model.createAndInsertById('item', req.body, profileID);
   if (response) {
     res.status(200).json(response);
   } else {
-    res
-      .status(404)
-      .json({ message: 'You have successfully created your product' });
+    res.status(404).json({ message: 'There was a problem creating an item' });
   }
 });
 
