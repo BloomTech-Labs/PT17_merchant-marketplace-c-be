@@ -24,6 +24,8 @@ const profileRouter = require('./profile/profileRouter');
 
 const itemsRouter = require('./items/itemsRouter');
 
+const photoRouter = require('./photo/photoRouter');
+
 const app = express();
 
 process.on('unhandledRejection', (reason, p) => {
@@ -52,6 +54,7 @@ app.use(cookieParser());
 app.use('/', indexRouter);
 app.use(['/profile', '/profiles'], profileRouter);
 app.use(['/item', '/items'], itemsRouter);
+app.use(['/photo', '/photos'], photoRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
