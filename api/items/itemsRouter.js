@@ -14,25 +14,13 @@ router.get('/:profileID/', authRequired, async (req, res) => {
   }
 });
 
-// get one item
-router.get('/:productID', authRequired, async (req, res) => {
-  const { productID } = req.params;
-  const response = await Model.findById('item', productID);
-  if (response) {
-    res.status(200).json(response);
-  } else {
-    res.status(404).json({ message: 'You have not created any products' });
-  }
-});
-router.post('/', async (req, res) => {
+router.post('/', authRequired, async (req, res) => {
   const data = req.body;
   const response = await Model.create('item', data);
   if (response) {
     res.status(200).json(response);
   } else {
-    res
-      .status(404)
-      .json({ message: 'You have successfully created your product' });
+    res.status(404).json({ message: 'There was a problem creating an item' });
   }
 });
 

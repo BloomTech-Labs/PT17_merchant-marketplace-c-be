@@ -4,7 +4,7 @@ const Model = require('../globalModel');
 const router = express.Router();
 
 // GET all tags for an item
-router.get('/:itemID/', authRequired, async (req, res) => {
+router.get('/:itemID/', async (req, res) => {
   const { itemID } = req.params;
   const response = await Model.getTagByItemId(itemID);
   if (response) {
@@ -14,6 +14,7 @@ router.get('/:itemID/', authRequired, async (req, res) => {
   }
 });
 
+// TODO: create join statement to have item create tag
 // POST tag for item
 router.post('/', async (req, res) => {
   const response = await Model.create('tag', req.body);

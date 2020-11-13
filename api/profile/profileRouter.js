@@ -62,8 +62,8 @@ const router = express.Router();
  *      403:
  *        $ref: '#/components/responses/UnauthorizedError'
  */
-router.get('/', function (req, res) {
-  Model.findAll()
+router.get('/', authRequired, function (req, res) {
+  Model.findAll('seller_profile')
     .then((profiles) => {
       res.status(200).json(profiles);
     })
@@ -110,7 +110,7 @@ router.get('/', function (req, res) {
  */
 router.get('/:id', authRequired, function (req, res) {
   const id = String(req.params.id);
-  Model.findById(id)
+  Model.findById('seller_profile', id)
     .then((profile) => {
       if (profile) {
         res.status(200).json(profile);
@@ -164,7 +164,7 @@ router.post('/', authRequired, async (req, res) => {
   if (profile) {
     const id = profile.id || 0;
     try {
-      await Model.findById(id).then(async (pf) => {
+      await Model.findById('seller_profile', id).then(async (pf) => {
         if (pf == undefined) {
           //profile not found so lets insert it
           await Model.create(profile).then((profile) =>
@@ -222,9 +222,9 @@ router.put('/', authRequired, function (req, res) {
   const profile = req.body;
   if (profile) {
     const id = profile.id || 0;
-    Model.findById(id)
+    Model.findById('seller_profile', id)
       .then(
-        Model.update(id, profile)
+        Model.update('seller_profile', id, profile)
           .then((updated) => {
             res
               .status(200)
@@ -278,8 +278,8 @@ router.put('/', authRequired, function (req, res) {
 router.delete('/:id', authRequired, function (req, res) {
   const id = req.params.id;
   try {
-    Model.findById(id).then((profile) => {
-      Model.remove(profile.id).then(() => {
+    Model.findById('seller_profile', id).then((profile) => {
+      Model.remove('seller_profile', profile.id).then(() => {
         res
           .status(200)
           .json({ message: `Profile '${id}' was deleted.`, profile: profile });

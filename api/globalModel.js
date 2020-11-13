@@ -19,6 +19,9 @@ const findById = async (text, id) => {
 const create = async (text, profile) => {
   return db(text).insert(profile).returning('*');
 };
+const createAndInsertById = async (text, item, id) => {
+  return db(text).insert(item).where(id).returning('*');
+};
 
 const update = (text, id, obj) => {
   return db(text).where({ id: id }).first().update(obj).returning('*');
@@ -66,4 +69,5 @@ module.exports = {
   findAllProducts,
   getCategoryItem,
   getTagByItemId,
+  createAndInsertById,
 };
