@@ -24,7 +24,7 @@ router.get('/:productID', authRequired, async (req, res) => {
     res.status(404).json({ message: 'You have not created any products' });
   }
 });
-router.post('/', authRequired, async (req, res) => {
+router.post('/', async (req, res) => {
   const data = req.body;
   const response = await Model.create('item', data);
   if (response) {

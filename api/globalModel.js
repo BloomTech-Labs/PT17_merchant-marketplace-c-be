@@ -38,6 +38,22 @@ const findOrCreate = async (obj) => {
     });
   }
 };
+// GET info from join table
+const getTagByItemId = async (itemID) => {
+  return db('item as i')
+    .join('tag_item as ti', 'i.id', 'ti.item_id')
+    .jon('tag as t', 't.id', 'ti.tag_id')
+    .where('ti.item_id', itemID)
+    .returning('*');
+};
+// GET info from join table
+const getCategoryItem = async (itemID) => {
+  return db('item as i')
+    .join('category_item as ci', 'i.id', 'ci.item_id')
+    .jon('category as c', 'c.id', 'ci.category_id')
+    .where('ci.item_id', itemID)
+    .returning('*');
+};
 
 module.exports = {
   findAll,
@@ -48,4 +64,6 @@ module.exports = {
   remove,
   findOrCreate,
   findAllProducts,
+  getCategoryItem,
+  getTagByItemId,
 };

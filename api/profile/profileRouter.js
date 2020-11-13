@@ -62,7 +62,7 @@ const router = express.Router();
  *      403:
  *        $ref: '#/components/responses/UnauthorizedError'
  */
-router.get('/', authRequired, function (req, res) {
+router.get('/', function (req, res) {
   Model.findAll()
     .then((profiles) => {
       res.status(200).json(profiles);
