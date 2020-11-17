@@ -40,6 +40,7 @@ app.use(
   swaggerUi.setup(swaggerSpec, swaggerUIOptions)
 );
 
+console.log(tagRouter);
 app.use(helmet());
 app.use(express.json());
 app.use(

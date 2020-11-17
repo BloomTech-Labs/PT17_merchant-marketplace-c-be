@@ -1,12 +1,23 @@
 const express = require('express');
-const authRequired = require('../middleware/authRequired');
+// const authRequired = require('../middleware/authRequired');
 const Model = require('../globalModel');
 const router = express.Router();
-
 // GET all tags for an item
-router.get('/:itemID/', async (req, res) => {
+router.get('/', async (req, res) => {
+  console.log('getting tags');
+  const response = await Model.findAll('tag');
+  console.log(response);
+  if (response) {
+    res.status(200).json(response);
+  } else {
+    res.status(404).json({ message: 'There are no tags' });
+  }
+});
+// GET all tags for an item
+router.get('/:itemID', async (req, res) => {
+  console.log('getting tag for item');
   const { itemID } = req.params;
-  const response = await Model.getTagByItemId(itemID);
+  const response = await Model.getTagByItemId('tag', itemID);
   if (response) {
     res.status(200).json(response);
   } else {
