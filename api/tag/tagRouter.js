@@ -17,8 +17,8 @@ router.get('/:itemID/', async (req, res) => {
 // TODO: create join statement to have item create tag
 // POST tag for item
 router.post('/', async (req, res) => {
+  console.log('trying to post');
   const response = await Model.create('tag', req.body);
-  console.log(req.body);
   if (response) {
     res.status(200).json(req.body);
   } else {

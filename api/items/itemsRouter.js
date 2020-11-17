@@ -14,16 +14,17 @@ router.get('/:profileID/', authRequired, async (req, res) => {
   }
 });
 
-router.post('/', authRequired, async (req, res) => {
+// POST profile can create an item
+router.post('/:profileID', authRequired, async (req, res) => {
   const data = req.body;
-  const response = await Model.create('item', data);
+  const response = await Model.createAndInsertById('item', req.params, data);
   if (response) {
     res.status(200).json(response);
   } else {
     res.status(404).json({ message: 'There was a problem creating an item' });
   }
 });
-
+// PUT profile can edit an item
 router.put('/:productId', authRequired, async (req, res) => {
   const data = req.body;
   const { productId } = req.params;
@@ -34,7 +35,7 @@ router.put('/:productId', authRequired, async (req, res) => {
     res.status(404).json({ message: `You have updated ${data.name}` });
   }
 });
-
+// DELETE profile can delete an item
 router.delete('/:productId/', authRequired, async (req, res) => {
   const { productId } = req.params;
   const response = await Model.delete('item', productId);
