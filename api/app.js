@@ -24,6 +24,7 @@ const profileRouter = require('./profile/profileRouter');
 
 const itemsRouter = require('./items/itemsRouter');
 
+const tagRouter = require('./tag/tagRouter');
 const photoRouter = require('./photo/photoRouter');
 
 const app = express();
@@ -54,9 +55,10 @@ app.use(cookieParser());
 app.use('/', indexRouter);
 app.use(['/profile', '/profiles'], profileRouter);
 app.use(['/item', '/items'], itemsRouter);
+app.use(['/tag', '/tags'], tagRouter);
 app.use(['/photo', '/photos'], photoRouter);
 
-// catch 404 and forward to error handler
+//catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));
 });

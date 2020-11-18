@@ -14,26 +14,17 @@ router.get('/:profileID/', authRequired, async (req, res) => {
   }
 });
 
-// get one item
-router.get('/:productID', authRequired, async (req, res) => {
-  const { productID } = req.params;
-  const response = await Model.findById('item', productID);
-  if (response) {
-    res.status(200).json(response);
-  } else {
-    res.status(404).json({ message: 'You have not created any products' });
-  }
-});
+// POST profile can create an item
 router.post('/:profileID', authRequired, async (req, res) => {
-  const { profileID } = req.params;
-  const response = await Model.createAndInsertById('item', req.body, profileID);
+  const data = req.body;
+  const response = await Model.createAndInsertById('item', req.params, data);
   if (response) {
     res.status(200).json(response);
   } else {
     res.status(404).json({ message: 'There was a problem creating an item' });
   }
 });
-
+// PUT profile can edit an item
 router.put('/:productId', authRequired, async (req, res) => {
   const data = req.body;
   const { productId } = req.params;
@@ -44,7 +35,7 @@ router.put('/:productId', authRequired, async (req, res) => {
     res.status(404).json({ message: `You have updated ${data.name}` });
   }
 });
-
+// DELETE profile can delete an item
 router.delete('/:productId/', authRequired, async (req, res) => {
   const { productId } = req.params;
   const response = await Model.delete('item', productId);
