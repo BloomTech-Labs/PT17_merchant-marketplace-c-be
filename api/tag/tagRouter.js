@@ -1,9 +1,9 @@
 const express = require('express');
-// const authRequired = require('../middleware/authRequired');
+const authRequired = require('../middleware/authRequired');
 const Model = require('../globalModel');
 const router = express.Router();
 // GET all tags for an item
-router.get('/', async (req, res) => {
+router.get('/', authRequired, async (req, res) => {
   const response = await Model.findAll('tag');
   console.log(response);
   if (response) {
@@ -14,7 +14,7 @@ router.get('/', async (req, res) => {
 });
 
 // GET all tags for an item
-router.get('/:itemID', async (req, res) => {
+router.get('/:itemID', authRequired, async (req, res) => {
   const { itemID } = req.params;
   const response = await Model.getTagByItemId(itemID);
   if (response) {
@@ -25,7 +25,7 @@ router.get('/:itemID', async (req, res) => {
 });
 
 // POST tag for item
-router.post('/', async (req, res) => {
+router.post('/', authRequired, async (req, res) => {
   const response = await Model.create('tag', req.body);
   if (response) {
     res.status(200).json(req.body);

@@ -4,7 +4,7 @@ const Model = require('../globalModel');
 const router = express.Router();
 
 // GET items
-router.get('/:profileID/', async (req, res) => {
+router.get('/:profileID/', authRequired, async (req, res) => {
   const { profileID } = req.params;
   const response = await Model.findAllProducts('item', profileID);
   if (response) {
