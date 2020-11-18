@@ -43,6 +43,7 @@ const findOrCreate = async (obj) => {
 };
 // GET info from join table
 const getTagByItemId = async (itemID) => {
+  console.log(itemID);
   return db('item as i')
     .join('tag_item as ti', 'i.id', 'ti.item_id')
     .join('tag as t', 't.id', 'ti.tag_id')

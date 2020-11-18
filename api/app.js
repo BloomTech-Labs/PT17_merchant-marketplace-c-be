@@ -40,7 +40,6 @@ app.use(
   swaggerUi.setup(swaggerSpec, swaggerUIOptions)
 );
 
-console.log(tagRouter);
 app.use(helmet());
 app.use(express.json());
 app.use(
@@ -59,10 +58,10 @@ app.use(['/item', '/items'], itemsRouter);
 app.use(['/tag', '/tags'], tagRouter);
 app.use(['/photo', '/photos'], photoRouter);
 
-// catch 404 and forward to error handler
-// app.use(function (req, res, next) {
-//   next(createError(404));
-// });
+//catch 404 and forward to error handler
+app.use(function (req, res, next) {
+  next(createError(404));
+});
 
 // error handler
 app.use(function (err, req, res, next) {
