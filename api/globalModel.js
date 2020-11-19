@@ -43,7 +43,6 @@ const findOrCreate = async (obj) => {
 };
 // GET info from join table
 const getTagByItemId = async (itemID) => {
-  console.log(itemID);
   return db('item as i')
     .join('tag_item as ti', 'i.id', 'ti.item_id')
     .join('tag as t', 't.id', 'ti.tag_id')
@@ -59,6 +58,12 @@ const getCategoryItem = async (itemID) => {
     .returning('*');
 };
 
+// GET info from join table
+const getPhotoByItemID = async (itemID) => {
+  console.log(itemID);
+  return db('photo').where({ item_id: itemID }).select('*');
+};
+
 module.exports = {
   findAll,
   findBy,
@@ -71,4 +76,5 @@ module.exports = {
   getCategoryItem,
   getTagByItemId,
   createAndInsertById,
+  getPhotoByItemID,
 };
