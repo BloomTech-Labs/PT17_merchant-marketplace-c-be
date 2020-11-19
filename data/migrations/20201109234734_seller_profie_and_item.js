@@ -1,8 +1,7 @@
 exports.up = function (knex) {
   return knex.schema
     .createTable('seller_profile', (tb) => {
-      tb.increments();
-      tb.string('okta_id', 255).unique().notNullable();
+      tb.string('id', 255).unique().notNullable().primary();
     })
     .createTable('item', (tb) => {
       tb.increments();
@@ -11,8 +10,7 @@ exports.up = function (knex) {
       tb.integer('quantity_available').notNullable().unsigned().defaultTo(0);
       tb.integer('price_in_cents').notNullable().unsigned();
       tb.boolean('published').notNullable().defaultTo(false);
-      tb.integer('seller_profile_id')
-        .unsigned()
+      tb.string('seller_profile_id')
         .notNullable()
         .references('id')
         .inTable('seller_profile')
