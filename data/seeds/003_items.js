@@ -7,7 +7,7 @@ exports.seed = function (knex) {
       return knex('item').insert([
         {
           id: 1,
-          seller_profile_id: 1,
+          seller_profile_id: '00ulthapbErVUwVJy4x6',
           name: 'Persian rug',
           quantity_available: 3,
           price_in_cents: 3400000,
@@ -18,7 +18,7 @@ exports.seed = function (knex) {
 
         {
           id: 2,
-          seller_profile_id: 1,
+          seller_profile_id: '00ulthapbErVUwVJy4x6',
           name: 'Bathroom rug!',
           quantity_available: 40,
           price_in_cents: 500,
@@ -29,7 +29,7 @@ exports.seed = function (knex) {
 
         {
           id: 3,
-          seller_profile_id: 1,
+          seller_profile_id: '00ulthapbErVUwVJy4x6',
           name: 'Office carpet!',
           quantity_available: 7000,
           price_in_cents: 5000,
@@ -40,7 +40,7 @@ exports.seed = function (knex) {
 
         {
           id: 4,
-          seller_profile_id: 2,
+          seller_profile_id: '00ultwew80Onb2vOT4x6',
           name: 'Hawaiian shirt',
           quantity_available: 1,
           price_in_cents: 20000,
@@ -51,7 +51,7 @@ exports.seed = function (knex) {
 
         {
           id: 5,
-          seller_profile_id: 2,
+          seller_profile_id: '00ultwew80Onb2vOT4x6',
           name: 'Champagne gold, 1997 Toyota Camry',
           quantity_available: 1,
           price_in_cents: 0,
@@ -62,7 +62,7 @@ exports.seed = function (knex) {
 
         {
           id: 6,
-          seller_profile_id: 2,
+          seller_profile_id: '00ultwew80Onb2vOT4x6',
           name: 'Mixed ammunition',
           quantity_available: 90000,
           price_in_cents: 100,
@@ -73,7 +73,7 @@ exports.seed = function (knex) {
 
         {
           id: 7,
-          seller_profile_id: 3,
+          seller_profile_id: '00ultx74kMUmEW8054x6',
           name: 'Book',
           quantity_available: 1,
           price_in_cents: 1000,
@@ -83,7 +83,7 @@ exports.seed = function (knex) {
 
         {
           id: 8,
-          seller_profile_id: 3,
+          seller_profile_id: '00ultx74kMUmEW8054x6',
           name: 'Rocket',
           quantity_available: 3,
           price_in_cents: 999999999,
@@ -93,7 +93,7 @@ exports.seed = function (knex) {
 
         {
           id: 9,
-          seller_profile_id: 3,
+          seller_profile_id: '00ultx74kMUmEW8054x6',
           name: 'Washington Post',
           quantity_available: 1,
           price_in_cents: 250000000,

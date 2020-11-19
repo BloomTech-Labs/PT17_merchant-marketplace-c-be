@@ -31,13 +31,13 @@ const remove = async (text, id) => {
   return await db(text).where({ id }).del();
 };
 
-const findOrCreate = async (obj) => {
-  const foundItem = await findById(obj.id).then((item) => item);
-  if (foundItem) {
-    return foundItem;
+const findOrCreate = async (text, obj) => {
+  const foundObj = await findById(text, obj.id).then((obj) => obj);
+  if (foundObj) {
+    return foundObj;
   } else {
-    return await create(obj).then((newItem) => {
-      return newItem ? newItem[0] : newItem;
+    return await create(text, obj).then((newObj) => {
+      return newObj ? newObj[0] : newObj;
     });
   }
 };

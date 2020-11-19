@@ -1,3 +1,4 @@
+
 exports.up = function (knex) {
   return knex.schema.table('seller_profile', (tb) => {
     tb.string('name', 255);
