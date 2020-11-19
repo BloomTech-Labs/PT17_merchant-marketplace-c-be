@@ -3,8 +3,8 @@ const authRequired = require('../middleware/authRequired');
 const Model = require('../globalModel');
 const router = express.Router();
 
-// GET items
-router.get('/:profileID/', authRequired, async (req, res) => {
+// GET items by profile ID
+router.get('/:profileID/', async (req, res) => {
   const { profileID } = req.params;
   const response = await Model.findAllProducts('item', profileID);
   if (response) {

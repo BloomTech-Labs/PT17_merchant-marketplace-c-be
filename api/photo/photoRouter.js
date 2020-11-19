@@ -3,10 +3,10 @@ const authRequired = require('../middleware/authRequired');
 const Model = require('../globalModel');
 const router = express.Router();
 
-// GET item gets a photo
-router.get('/:itemId', authRequired, async (req, res) => {
+// GET a photo item id
+router.get('/:itemID', authRequired, async (req, res) => {
   const { itemID } = req.params;
-  const response = await Model.findById('photo', itemID);
+  const response = await Model.getPhotoByItemID(itemID);
   if (response) {
     res.status(200).json(response);
   } else {
