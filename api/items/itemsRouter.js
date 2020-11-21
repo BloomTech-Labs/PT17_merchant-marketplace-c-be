@@ -4,20 +4,30 @@ const Model = require('../globalModel');
 const router = express.Router();
 
 // GET items by profile ID
-router.get('/:profileID/', async (req, res) => {
-  const { profileID } = req.params;
-  const response = await Model.findAllProducts('item', profileID);
+router.get('/profile/:profileID/', authRequired, async (req, res) => {
+  const profileID = String(req.params.profileID);
+  const response = await Model.findItemByProfile(profileID);
   if (response) {
     res.status(200).json(response);
   } else {
     res.status(404).json({ message: 'You have not created any products' });
   }
 });
+// get item by id
+router.get('/:itemID', authRequired, async (req, res) => {
+  const { itemID } = req.params;
+  const response = await Model.findAllProducts('item', itemID);
+  if (response) {
+    res.status(200).json(response);
+  } else {
+    res.status(404).json({ message: 'Could not find this item' });
+  }
+});
 
 // POST profile can create an item
-router.post('/:profileID', authRequired, async (req, res) => {
+router.post('/', authRequired, async (req, res) => {
   const data = req.body;
-  const response = await Model.createAndInsertById('item', req.params, data);
+  const response = await Model.create('item', data);
   if (response) {
     res.status(200).json(response);
   } else {
@@ -38,7 +48,7 @@ router.put('/:productId', authRequired, async (req, res) => {
 // DELETE profile can delete an item
 router.delete('/:productId/', authRequired, async (req, res) => {
   const { productId } = req.params;
-  const response = await Model.delete('item', productId);
+  const response = await Model.remove('item', productId);
   if (response) {
     res.status(200).json(response);
   } else {

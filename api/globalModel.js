@@ -4,6 +4,14 @@ const findAll = async (text) => {
   return await db(text);
 };
 
+const findItemByProfile = async (seller_profile_id) => {
+  return await db('item').select('*').where({ seller_profile_id });
+};
+
+const createBySellerID = async (sellerID, item) => {
+  return await db('item').insert(item).where({ seller_profile_id: sellerID });
+};
+
 const findAllProducts = async (text, id) => {
   return await db(text).select('*').where({ id });
 };
@@ -20,7 +28,7 @@ const create = async (text, profile) => {
   return db(text).insert(profile).returning('*');
 };
 const createAndInsertById = async (text, item, id) => {
-  return db(text).insert(item).where(id).returning('*');
+  return db(text).insert(item).where({ id });
 };
 
 const update = (text, id, obj) => {
@@ -68,6 +76,7 @@ module.exports = {
   findAll,
   findBy,
   findById,
+  findItemByProfile,
   create,
   update,
   remove,
@@ -77,4 +86,5 @@ module.exports = {
   getTagByItemId,
   createAndInsertById,
   getPhotoByItemID,
+  createBySellerID,
 };
