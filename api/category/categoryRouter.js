@@ -1,16 +1,12 @@
 const express = require('express');
 const authRequired = require('../middleware/authRequired');
 const Model = require('../globalModel');
+const endpointCreator = require('../endPoints');
 const router = express.Router();
 
 // GET all categories
 router.get('/', authRequired, async (req, res) => {
-  const response = await Model.findAll('category');
-  if (response) {
-    res.status(200).json(response);
-  } else {
-    res.status(404).json({ message: 'There are no categories' });
-  }
+  endpointCreator.findAllData('category', req, res);
 });
 
 // GET all categories for an item
@@ -26,12 +22,7 @@ router.get('/:itemID', authRequired, async (req, res) => {
 
 // POST category
 router.post('/', authRequired, async (req, res) => {
-  const response = await Model.create('category', req.body);
-  if (response) {
-    res.status(200).json(req.body);
-  } else {
-    res.status(404).json({ message: 'Could not create tag' });
-  }
+  endpointCreator.createData('tag', req, res);
 });
 
 module.exports = router;

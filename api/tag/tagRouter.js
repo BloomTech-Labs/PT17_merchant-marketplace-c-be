@@ -1,15 +1,11 @@
 const express = require('express');
 const authRequired = require('../middleware/authRequired');
 const Model = require('../globalModel');
+const endpointCreator = require('../endPoints');
 const router = express.Router();
 // GET all tags
 router.get('/', authRequired, async (req, res) => {
-  const response = await Model.findAll('tag');
-  if (response) {
-    res.status(200).json(response);
-  } else {
-    res.status(404).json({ message: 'There are no tags' });
-  }
+  endpointCreator.findAllData('tag', req, res);
 });
 
 // GET all tags of item id with the item info
@@ -25,12 +21,7 @@ router.get('/item/:itemID/', authRequired, async (req, res) => {
 
 // POST tag
 router.post('/', authRequired, async (req, res) => {
-  const response = await Model.create('tag', req.body);
-  if (response) {
-    res.status(200).json(req.body);
-  } else {
-    res.status(404).json({ message: 'Could not create tag' });
-  }
+  endpointCreator.createData('tag', req, res);
 });
 
 module.exports = router;

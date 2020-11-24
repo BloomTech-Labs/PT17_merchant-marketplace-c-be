@@ -1,6 +1,7 @@
 const express = require('express');
 const authRequired = require('../middleware/authRequired');
 const Model = require('../globalModel');
+const endpointCreator = require('../endPoints');
 const helper = require('../helper');
 const router = express.Router();
 // GET items by profile ID
@@ -34,13 +35,7 @@ router.get('/:itemID', authRequired, async (req, res) => {
 
 // POST profile can create an item
 router.post('/', authRequired, async (req, res) => {
-  const data = req.body;
-  const response = await Model.create('item', data);
-  try {
-    res.status(201).json(response);
-  } catch {
-    res.status(404).json({ message: 'There was a problem creating an item' });
-  }
+  endpointCreator.createData('item', req, res);
 });
 // PUT profile can edit an item
 router.put('/:productId', authRequired, async (req, res) => {
@@ -59,17 +54,7 @@ router.put('/:productId', authRequired, async (req, res) => {
 });
 // DELETE profile can delete an item
 router.delete('/:productId/', authRequired, async (req, res) => {
-  const { productId } = req.params;
-  const response = await Model.remove('item', productId);
-  try {
-    if (response) {
-      res.status(200).send(productId);
-    } else {
-      helper.notFound('item', res);
-    }
-  } catch {
-    helper.dbError(res);
-  }
+  endpointCreator.deleteData('items', req, res);
 });
 //POST items and tags are connected
 router.post('/:itemID/tag/:tagID', authRequired, async (req, res) => {
