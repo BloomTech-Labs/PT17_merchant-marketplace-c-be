@@ -34,6 +34,4 @@ router.post('/', authRequired, async (req, res) => {
   }
 });
 
-// TODO: CONNECT CATEGORY TO ITEM
-
 module.exports = router;

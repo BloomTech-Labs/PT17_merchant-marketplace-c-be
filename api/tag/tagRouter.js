@@ -33,6 +33,4 @@ router.post('/', authRequired, async (req, res) => {
   }
 });
 
-// TODO: POST CONNECT A TAG TO AN ITEM ID
-
 module.exports = router;

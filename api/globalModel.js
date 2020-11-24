@@ -68,8 +68,17 @@ const getCategoryItem = async (itemID) => {
 
 // GET info from join table
 const getPhotoByItemID = async (itemID) => {
-  console.log(itemID);
   return db('photo').where({ item_id: itemID }).select('*');
+};
+
+// connect items and tags
+const connectItemsAndTags = async (itemID, tagID) => {
+  return db('tag_item').insert({ item_id: itemID, tag_id: tagID });
+};
+
+//connect categories and items
+const connectItemsAndCategories = async (itemID, catID) => {
+  return db('category_item').insert({ item_id: itemID, category_id: catID });
 };
 
 module.exports = {
@@ -87,4 +96,6 @@ module.exports = {
   createAndInsertById,
   getPhotoByItemID,
   createBySellerID,
+  connectItemsAndCategories,
+  connectItemsAndTags,
 };
