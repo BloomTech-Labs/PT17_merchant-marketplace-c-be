@@ -52,6 +52,8 @@ You can find the deployed project at [🚫URL NAME GOES HERE](🚫copy and paste
 # APIs
 
 Profiles
+| Request | Returns |
+| ----- | ----- |
 | GET /profile/
 | GET /profile/:id/
 | POST /profile/ | returns body and message
@@ -59,6 +61,8 @@ Profiles
 | DELETE /profile/:id/ 
 
 POSTING ITEMS
+| Request | Returns |
+| ----- | ----- |
 | GET /item/profile/:profileId/ 
 | GET /item/:itemId/ | returns body
 | POST /item/ | don’t forget to post seller_profile_id
@@ -66,21 +70,31 @@ POSTING ITEMS
 | DELETE  /item/:id/ | returns id
 
 TAG_ITEM
+| Request | Returns |
+| ----- | ----- |
 | POST /item/:itemId/tag/:tagId/
 
 CATEGORY_ITEM
+| Request | Returns |
+| ----- | ----- |
 | POST /item/:itemId/categories/:catId/
 
 PHOTO
+| Request | Returns |
+| ----- | ----- |
 | GET /photo/:item_id/ | return body
 | POST /photo/ | return body. Don’t forget to post item_id
 
 CATEGORY
+| Request | Returns |
+| ----- | ----- |
 | GET /category/ | return list of categories
 | GET /category/:itemId/ 
 | POST /category/ | return body
 
 TAG
+| Request | Returns |
+| ----- | ----- |
 | GET /tag/ | return list of tags
 | GET /tag/item/:itemId/ | return items with tags
 | POST /tag/ | return body
