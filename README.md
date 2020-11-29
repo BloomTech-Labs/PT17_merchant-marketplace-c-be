@@ -51,6 +51,41 @@ You can find the deployed project at [🚫URL NAME GOES HERE](🚫copy and paste
 
 # APIs
 
+Profiles
+| GET /profile/
+| GET /profile/:id/
+| POST /profile/ | returns body and message
+| PUT /profile | returns body and message
+| DELETE /profile/:id/ 
+
+POSTING ITEMS
+| GET /item/profile/:profileId/ 
+| GET /item/:itemId/ | returns body
+| POST /item/ | don’t forget to post seller_profile_id
+| PUT  /item/:id | returns body
+| DELETE  /item/:id/ | returns id
+
+TAG_ITEM
+| POST /item/:itemId/tag/:tagId/
+
+CATEGORY_ITEM
+| POST /item/:itemId/categories/:catId/
+
+PHOTO
+| GET /photo/:item_id/ | return body
+| POST /photo/ | return body. Don’t forget to post item_id
+
+CATEGORY
+| GET /category/ | return list of categories
+| GET /category/:itemId/ 
+| POST /category/ | return body
+
+TAG
+| GET /tag/ | return list of tags
+| GET /tag/item/:itemId/ | return items with tags
+| POST /tag/ | return body
+
+
 ## Authentication API here
 
 🚫Replace text below with a description and link to your API swagger docs
