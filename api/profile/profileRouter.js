@@ -167,7 +167,7 @@ router.post('/', authRequired, async (req, res) => {
       await Model.findById('seller_profile', id).then(async (pf) => {
         if (pf == undefined) {
           //profile not found so lets insert it
-          await Model.create(profile).then((profile) =>
+          await Model.create('seller_profile', profile).then((profile) =>
             res
               .status(200)
               .json({ message: 'profile created', profile: profile[0] })
@@ -228,7 +228,7 @@ router.put('/', authRequired, function (req, res) {
           .then((updated) => {
             res
               .status(200)
-              .json({ message: 'profile created', profile: updated[0] });
+              .json({ message: 'profile updated', profile: updated[0] });
           })
           .catch((err) => {
             res.status(500).json({

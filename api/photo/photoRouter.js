@@ -2,8 +2,9 @@ const express = require('express');
 const authRequired = require('../middleware/authRequired');
 const Model = require('../globalModel');
 const router = express.Router();
+const endpointCreator = require('../endPoints');
 
-// GET a photo item id
+// GET a photos item id
 router.get('/:itemID', authRequired, async (req, res) => {
   const { itemID } = req.params;
   const response = await Model.getPhotoByItemID(itemID);
@@ -14,17 +15,8 @@ router.get('/:itemID', authRequired, async (req, res) => {
   }
 });
 // POST a photo for an item
-router.post('/:itemID', authRequired, async (req, res) => {
-  const data = req.body;
-  const { itemID } = req.params;
-  const response = await Model.createAndInsertById('photo', data, itemID);
-  if (response) {
-    res.status(200).json(response);
-  } else {
-    res.status(404).json({
-      message: 'You have successfully created a photo for the item',
-    });
-  }
+router.post('/', authRequired, async (req, res) => {
+  endpointCreator.createData('photo', req, res);
 });
 
 module.exports = router;
