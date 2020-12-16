@@ -6,7 +6,6 @@ exports.seed = function (knex) {
       // Inserts seed entries
       return knex('item').insert([
         {
-          id: 1,
           seller_profile_id: '00ulthapbErVUwVJy4x6',
           name: 'Persian rug',
           quantity_available: 3,
@@ -17,7 +16,6 @@ exports.seed = function (knex) {
         },
 
         {
-          id: 2,
           seller_profile_id: '00ulthapbErVUwVJy4x6',
           name: 'Bathroom rug!',
           quantity_available: 40,
@@ -28,7 +26,6 @@ exports.seed = function (knex) {
         },
 
         {
-          id: 3,
           seller_profile_id: '00ulthapbErVUwVJy4x6',
           name: 'Office carpet!',
           quantity_available: 7000,
@@ -39,7 +36,6 @@ exports.seed = function (knex) {
         },
 
         {
-          id: 4,
           seller_profile_id: '00ultwew80Onb2vOT4x6',
           name: 'Hawaiian shirt',
           quantity_available: 1,
@@ -50,7 +46,6 @@ exports.seed = function (knex) {
         },
 
         {
-          id: 5,
           seller_profile_id: '00ultwew80Onb2vOT4x6',
           name: 'Champagne gold, 1997 Toyota Camry',
           quantity_available: 1,
@@ -61,7 +56,6 @@ exports.seed = function (knex) {
         },
 
         {
-          id: 6,
           seller_profile_id: '00ultwew80Onb2vOT4x6',
           name: 'Mixed ammunition',
           quantity_available: 90000,
@@ -72,7 +66,6 @@ exports.seed = function (knex) {
         },
 
         {
-          id: 7,
           seller_profile_id: '00ultx74kMUmEW8054x6',
           name: 'Book',
           quantity_available: 1,
@@ -82,7 +75,6 @@ exports.seed = function (knex) {
         },
 
         {
-          id: 8,
           seller_profile_id: '00ultx74kMUmEW8054x6',
           name: 'Rocket',
           quantity_available: 3,
@@ -92,7 +84,6 @@ exports.seed = function (knex) {
         },
 
         {
-          id: 9,
           seller_profile_id: '00ultx74kMUmEW8054x6',
           name: 'Washington Post',
           quantity_available: 1,
