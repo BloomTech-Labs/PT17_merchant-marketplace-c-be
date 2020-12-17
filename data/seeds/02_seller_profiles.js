@@ -1,13 +1,12 @@
 exports.seed = function (knex) {
   // Deletes ALL existing entries
-  return knex('seller_profile')
-    .del()
-    .then(function () {
+
+
       // Inserts seed entries
       return knex('seller_profile').insert([
         {
           id: '00ulthapbErVUwVJy4x6',
-          name: 'SuperStore Rug Emporium',
+          seller_name: 'SuperStore Rug Emporium',
           email_address: 'llama001@maildrop.cc',
           phone_number: '(555) 444-3333',
           physical_address: '100 Davidson Street, Maine',
@@ -17,7 +16,7 @@ exports.seed = function (knex) {
 
         {
           id: '00ultwew80Onb2vOT4x6',
-          name: 'Nicholas Mullen',
+          seller_name: 'Nicholas Mullen',
           email_address: 'llama002@maildrop.cc',
           phone_number: '(555) 123-4567',
           physical_address: '35 Sampsonite Avenue, Lingdon Nevada, 22556',
@@ -27,12 +26,12 @@ exports.seed = function (knex) {
 
         {
           id: '00ultx74kMUmEW8054x6',
-          name: "Bezo's Enterprises",
+          seller_name: "Bezo's Enterprises",
           email_address: 'llama003@maildrop.cc',
           phone_number: '(555) 987-6543',
           physical_address: '1378 California Drive, California, 00012',
           description: 'Books, Rockets, Washington News Media',
         },
       ]);
-    });
+
 };

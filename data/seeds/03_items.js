@@ -1,13 +1,12 @@
+  
 exports.seed = function (knex) {
   // Deletes ALL existing entries
-  knex('item')
-    .truncate()
-    .then(function () {
+
       // Inserts seed entries
       return knex('item').insert([
         {
           seller_profile_id: '00ulthapbErVUwVJy4x6',
-          name: 'Persian rug',
+          item_name: 'Persian rug',
           quantity_available: 3,
           price_in_cents: 3400000,
           description:
@@ -17,7 +16,7 @@ exports.seed = function (knex) {
 
         {
           seller_profile_id: '00ulthapbErVUwVJy4x6',
-          name: 'Bathroom rug!',
+          item_name: 'Bathroom rug!',
           quantity_available: 40,
           price_in_cents: 500,
           description:
@@ -27,7 +26,7 @@ exports.seed = function (knex) {
 
         {
           seller_profile_id: '00ulthapbErVUwVJy4x6',
-          name: 'Office carpet!',
+          item_name: 'Office carpet!',
           quantity_available: 7000,
           price_in_cents: 5000,
           description:
@@ -37,7 +36,7 @@ exports.seed = function (knex) {
 
         {
           seller_profile_id: '00ultwew80Onb2vOT4x6',
-          name: 'Hawaiian shirt',
+          item_name: 'Hawaiian shirt',
           quantity_available: 1,
           price_in_cents: 20000,
           description:
@@ -47,7 +46,7 @@ exports.seed = function (knex) {
 
         {
           seller_profile_id: '00ultwew80Onb2vOT4x6',
-          name: 'Champagne gold, 1997 Toyota Camry',
+          item_name: 'Champagne gold, 1997 Toyota Camry',
           quantity_available: 1,
           price_in_cents: 0,
           description:
@@ -57,7 +56,7 @@ exports.seed = function (knex) {
 
         {
           seller_profile_id: '00ultwew80Onb2vOT4x6',
-          name: 'Mixed ammunition',
+          item_name: 'Mixed ammunition',
           quantity_available: 90000,
           price_in_cents: 100,
           description:
@@ -67,7 +66,7 @@ exports.seed = function (knex) {
 
         {
           seller_profile_id: '00ultx74kMUmEW8054x6',
-          name: 'Book',
+          item_name: 'Book',
           quantity_available: 1,
           price_in_cents: 1000,
           description: 'Paperback. Like new. Subject unknown.',
@@ -76,7 +75,7 @@ exports.seed = function (knex) {
 
         {
           seller_profile_id: '00ultx74kMUmEW8054x6',
-          name: 'Rocket',
+          item_name: 'Rocket',
           quantity_available: 3,
           price_in_cents: 999999999,
           description: "Cool, but it doesn't go as high as Elon's.",
@@ -85,7 +84,7 @@ exports.seed = function (knex) {
 
         {
           seller_profile_id: '00ultx74kMUmEW8054x6',
-          name: 'Washington Post',
+          item_name: 'Washington Post',
           quantity_available: 1,
           price_in_cents: 250000000,
           description:
@@ -93,5 +92,5 @@ exports.seed = function (knex) {
           published: true,
         },
       ]);
-    });
+
 };

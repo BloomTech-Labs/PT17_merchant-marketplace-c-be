@@ -12,10 +12,9 @@ const profiles = [...new Array(5)].map((i, idx) => ({
 
 exports.seed = function (knex) {
   // Deletes ALL existing entries
-  return knex('profiles')
-    .del()
-    .then(function () {
+
+
       // Inserts seed entries
       return knex('profiles').insert(profiles);
-    });
+  
 };
