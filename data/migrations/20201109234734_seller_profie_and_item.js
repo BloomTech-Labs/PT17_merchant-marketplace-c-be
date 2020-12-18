@@ -30,17 +30,6 @@ exports.up = function (knex) {
         .onDelete('CASCADE')
         .onUpdate('CASCADE');
     })
-    // .createTable('item_photo', (tb) => {
-    //   tb.increments();
-    //   tb.string('url', 255);
-    //   tb.integer('item_id')
-    //     .unsigned()
-    //     .notNullable()
-    //     .references('id')
-    //     .inTable('item')
-    //     .onDelete('CASCADE')
-    //     .onUpdate('CASCADE');
-    // })
     .createTable('photo', (tb) => {
       tb.increments();
       tb.string('url', 255);
@@ -68,7 +57,6 @@ exports.up = function (knex) {
         .onDelete('CASCADE')
         .onUpdate('CASCADE');
     })
-
     .createTable('tag_item', (tb) => {
       tb.integer('item_id')
         .unsigned()
