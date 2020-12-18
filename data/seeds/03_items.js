@@ -32,6 +32,56 @@ exports.seed = function (knex) {
     },
 
     {
+      seller_profile_id: '00ulthapbErVUwVJy4x6',
+      item_name: 'Another Persian rug!',
+      quantity_available: 5,
+      price_in_cents: 4400000,
+      description:
+        'Fancy rug! Great pattern! Perfect for living room, wall or sauna!',
+      published: true,
+    },
+
+    {
+      seller_profile_id: '00ulthapbErVUwVJy4x6',
+      item_name: 'Persian rug, but better!',
+      quantity_available: 5,
+      price_in_cents: 4400000,
+      description:
+        'Fancy rug! Great pattern! Perfect for living room, wall or sauna!',
+      published: true,
+    },
+
+    {
+      seller_profile_id: '00ulthapbErVUwVJy4x6',
+      item_name: 'Persian rug, again',
+      quantity_available: 5,
+      price_in_cents: 4400000,
+      description:
+        'Fancy rug! Great pattern! Perfect for living room, wall or sauna!',
+      published: true,
+    },
+
+    {
+      seller_profile_id: '00ulthapbErVUwVJy4x6',
+      item_name: 'Persian Rug',
+      quantity_available: 5,
+      price_in_cents: 4400000,
+      description:
+        'Are we serious with all of these persion rugs? Yes we are!',
+      published: true,
+    },
+
+    {
+      seller_profile_id: '00ulthapbErVUwVJy4x6',
+      item_name: 'Final Persian Rug',
+      quantity_available: 5,
+      price_in_cents: 4400000,
+      description:
+        'Are we serious with all of these persion rugs? Yes we are!',
+      published: true,
+    },
+
+    {
       seller_profile_id: '00ultwew80Onb2vOT4x6',
       item_name: 'Hawaiian shirt',
       quantity_available: 1,
