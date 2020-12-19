@@ -7,8 +7,7 @@ exports.seed = function (knex) {
       email_address: 'llama001@maildrop.cc',
       phone_number: '(555) 444-3333',
       physical_address: '100 Davidson Street, Maine',
-      description:
-        'Rugs, Rugs, Rugs! Discount Rugs, Fine Rugs, Bathroom Rugs!',
+      description: 'Rugs, Rugs, Rugs! Discount Rugs, Fine Rugs, Bathroom Rugs!',
     },
 
     {

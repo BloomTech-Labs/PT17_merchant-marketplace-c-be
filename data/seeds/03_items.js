@@ -66,8 +66,7 @@ exports.seed = function (knex) {
       item_name: 'Persian Rug',
       quantity_available: 5,
       price_in_cents: 4400000,
-      description:
-        'Are we serious with all of these persion rugs? Yes we are!',
+      description: 'Are we serious with all of these persion rugs? Yes we are!',
       published: true,
     },
 
@@ -76,8 +75,7 @@ exports.seed = function (knex) {
       item_name: 'Final Persian Rug',
       quantity_available: 5,
       price_in_cents: 4400000,
-      description:
-        'Are we serious with all of these persion rugs? Yes we are!',
+      description: 'Are we serious with all of these persion rugs? Yes we are!',
       published: true,
     },
 
@@ -86,8 +84,7 @@ exports.seed = function (knex) {
       item_name: 'Hawaiian shirt',
       quantity_available: 1,
       price_in_cents: 20000,
-      description:
-        'Casual but stylish. Excellent for unwanted office jobs.',
+      description: 'Casual but stylish. Excellent for unwanted office jobs.',
       published: true,
     },
 

@@ -153,5 +153,4 @@ exports.seed = function (knex) {
         'https://ucarecdn.com/2efcfd41-67a2-4569-ad2c-73daa58e1945/small_logo.png',
     },
   ]);
-
 };
