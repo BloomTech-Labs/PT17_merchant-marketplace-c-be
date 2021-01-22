@@ -1,87 +1,93 @@
 exports.up = function (knex) {
   return knex.schema
-    .createTable('seller_profile', (tb) => {
+    .createTable('stores', (tb) => {
       tb.string('id', 255).unique().notNullable().primary();
-      tb.string('seller_name', 255);
-      tb.string('email_address', 255);
-      tb.string('phone_number', 255);
-      tb.string('physical_address', 255);
+      tb.string('name', 255).notNullable().unique();
       tb.text('description');
+      tb.string('address', 255);
+      tb.string('phone_number', 255);
+      tb.string('merchant_id')
+        .notNullable()
+        .unique()
+        .references('profiles.id')
+        .onUpdate('CASCADE')
+        .onDelete('CASCADE');
     })
-    .createTable('category', (tb) => {
+    .createTable('categories', (tb) => {
       tb.increments();
       tb.string('category_name', 255);
     })
-    .createTable('tag', (tb) => {
+    .createTable('tags', (tb) => {
       tb.increments();
       tb.string('tag_name', 255);
     })
-    .createTable('item', (tb) => {
+    .createTable('products', (tb) => {
       tb.increments();
-      tb.string('item_name', 255);
+      tb.string('name', 255);
+      tb.integer('stock').notNullable().unsigned().defaultTo(0);
+      tb.double('price').notNullable().defaultTo(0.99);
       tb.text('description');
-      tb.integer('quantity_available').notNullable().unsigned().defaultTo(0);
-      tb.integer('price_in_cents').notNullable().unsigned();
       tb.boolean('published').notNullable().defaultTo(false);
-      tb.string('seller_profile_id')
+      tb.string('store_id')
         .notNullable()
-        .references('id')
-        .inTable('seller_profile')
+        .references('stores.id')
         .onDelete('CASCADE')
         .onUpdate('CASCADE');
     })
-    .createTable('photo', (tb) => {
+    .createTable('product_images', (tb) => {
       tb.increments();
       tb.string('url', 255);
-      tb.integer('item_id')
+      tb.integer('product_id')
         .unsigned()
         .notNullable()
         .references('id')
-        .inTable('item')
+        .inTable('products')
         .onDelete('CASCADE')
         .onUpdate('CASCADE');
     })
-    .createTable('category_item', (tb) => {
-      tb.integer('item_id')
+    .createTable('product_categories', (tb) => {
+      tb.integer('product_id')
         .unsigned()
         .notNullable()
         .references('id')
-        .inTable('item')
+        .inTable('products')
         .onDelete('CASCADE')
         .onUpdate('CASCADE');
       tb.integer('category_id')
         .unsigned()
         .notNullable()
         .references('id')
-        .inTable('category')
+        .inTable('categories')
         .onDelete('CASCADE')
         .onUpdate('CASCADE');
+      tb.primary(['product_id', 'category_id']);
     })
-    .createTable('tag_item', (tb) => {
-      tb.integer('item_id')
+    .createTable('product_tags', (tb) => {
+      tb.integer('product_id')
         .unsigned()
         .notNullable()
         .references('id')
-        .inTable('item')
+        .inTable('products')
         .onDelete('CASCADE')
         .onUpdate('CASCADE');
       tb.integer('tag_id')
         .unsigned()
         .notNullable()
         .references('id')
-        .inTable('tag')
+        .inTable('tags')
         .onDelete('CASCADE')
         .onUpdate('CASCADE');
+      tb.primary(['product_id', 'tag_id']);
     });
 };
 
 exports.down = function (knex) {
   return knex.schema
-    .dropTableIfExists('tag_item')
-    .dropTableIfExists('category_item')
-    .dropTableIfExists('photo')
-    .dropTableIfExists('item')
-    .dropTableIfExists('tag')
-    .dropTableIfExists('category')
-    .dropTableIfExists('seller_profile');
+    .dropTableIfExists('product_tags')
+    .dropTableIfExists('product_categories')
+    .dropTableIfExists('product_images')
+    .dropTableIfExists('products')
+    .dropTableIfExists('tags')
+    .dropTableIfExists('categories')
+    .dropTableIfExists('stores');
 };

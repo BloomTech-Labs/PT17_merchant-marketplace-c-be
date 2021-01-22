@@ -3,9 +3,12 @@ exports.up = (knex) => {
     .raw('CREATE EXTENSION IF NOT EXISTS "uuid-ossp"')
     .createTable('profiles', function (table) {
       table.string('id').notNullable().unique().primary();
-      table.string('email');
-      table.string('name');
+      table.string('name').notNullable();
+      table.string('email').notNullable().unique();
+      table.string('billing_address').notNullable();
+      table.string('shipping_address');
       table.string('avatarUrl');
+      table.boolean('merchant').notNullable().defaultTo(false);
       table.timestamps(true, true);
     });
 };
