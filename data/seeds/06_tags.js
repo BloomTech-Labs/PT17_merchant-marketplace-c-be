@@ -1,6 +1,6 @@
 exports.seed = function (knex) {
   // Inserts seed entries
-  return knex('tags').insert([
+  return knex('tag').insert([
     { tag_name: 'junk' },
     { tag_name: 'clothes' },
     { tag_name: 'poor quality' },
