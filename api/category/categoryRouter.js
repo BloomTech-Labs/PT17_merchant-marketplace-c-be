@@ -22,7 +22,7 @@ router.get('/:itemID', authRequired, async (req, res) => {
 
 // POST category
 router.post('/', authRequired, async (req, res) => {
-  endpointCreator.createData('tag', req, res);
+  endpointCreator.createData('category', req, res);
 });
 
 module.exports = router;
