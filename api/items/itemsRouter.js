@@ -54,7 +54,7 @@ router.put('/:productId', authRequired, async (req, res) => {
 });
 // DELETE profile can delete an item
 router.delete('/:productId/', authRequired, async (req, res) => {
-  endpointCreator.deleteData('items', req, res);
+  endpointCreator.deleteData('item', req, res);
 });
 //POST items and tags are connected
 router.post('/:itemID/tag/:tagID', authRequired, async (req, res) => {
