@@ -8,6 +8,9 @@ exports.up = function (knex) {
       tb.string('physical_address', 255);
       tb.text('description');
     })
+    .createTable('buyer_proile', (tb) => {
+      tb.string('id');
+    })
     .createTable('category', (tb) => {
       tb.increments();
       tb.string('category_name', 255);
