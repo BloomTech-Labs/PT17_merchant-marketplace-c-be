@@ -9,7 +9,11 @@ exports.up = function (knex) {
       tb.text('description');
     })
     .createTable('buyer_proile', (tb) => {
-      tb.string('id');
+      tb.string('id').unique().notNullable().primary();
+      tb.string('buyer_name', 255);
+      tb.string('email_address', 255);
+      tb.string('physical_address', 255);
+      tb.string('description');
     })
     .createTable('category', (tb) => {
       tb.increments();
