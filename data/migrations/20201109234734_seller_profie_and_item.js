@@ -8,7 +8,7 @@ exports.up = function (knex) {
       tb.string('physical_address', 255);
       tb.text('description');
     })
-    .createTable('buyer_proile', (tb) => {
+    .createTable('buyer_profile', (tb) => {
       tb.string('id').unique().notNullable().primary();
       tb.string('buyer_name', 255);
       tb.string('email_address', 255);
