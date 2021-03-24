@@ -55,7 +55,7 @@ app.use(cookieParser());
 
 // application routes
 app.use('/', indexRouter);
-app.use(['/buyerProfile', '/buyerProfiles', buyerProfileRouter]);
+app.use(['/buyerProfile', '/buyerProfiles'], buyerProfileRouter);
 app.use(['/profile', '/profiles'], profileRouter);
 app.use(['/item', '/items'], itemsRouter);
 app.use(['/tag', '/tags'], tagRouter);
