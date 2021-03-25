@@ -53,4 +53,32 @@ router.post('/', authRequired, async (req, res) => {
   }
 });
 
+router.put('/:id', function (req, res) {
+  const profile = req.body;
+  const id = String(req.params.id);
+  if (profile) {
+    Model.findById('buyer_profile', id)
+      .then(
+        Model.update('buyer_profile', id, profile)
+          .then((updated) => {
+            res
+              .status(200)
+              .json({ message: 'profile updated', profile: updated[0] });
+          })
+          .catch((err) => {
+            res.status(404).json({
+              message: `Could not update profile '${id}`,
+              error: err.message,
+            });
+          })
+      )
+      .catch((err) => {
+        res.status(404).json({
+          message: `Could not find profile '${id}`,
+          error: err.message,
+        });
+      });
+  }
+});
+
 module.exports = router;
