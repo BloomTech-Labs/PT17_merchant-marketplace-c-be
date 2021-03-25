@@ -51,16 +51,16 @@ Profiles
 | GET /profile/:id/
 | POST /profile/ | returns body and message
 | PUT /profile | returns body and message
-| DELETE /profile/:id/ 
+| DELETE /profile/:id/
 
 POSTING ITEMS
 | Request | Returns |
 | ----- | ----- |
-| GET /item/profile/:profileId/ 
+| GET /item/profile/:profileId/
 | GET /item/:itemId/ | returns body
 | POST /item/ | don’t forget to post seller_profile_id
-| PUT  /item/:id | returns body
-| DELETE  /item/:id/ | returns id
+| PUT /item/:id | returns body
+| DELETE /item/:id/ | returns id
 
 TAG_ITEM
 | Request | Returns |
@@ -82,7 +82,7 @@ CATEGORY
 | Request | Returns |
 | ----- | ----- |
 | GET /category/ | return list of categories
-| GET /category/:itemId/ 
+| GET /category/:itemId/
 | POST /category/ | return body
 
 TAG
@@ -91,7 +91,6 @@ TAG
 | GET /tag/ | return list of tags
 | GET /tag/item/:itemId/ | return items with tags
 | POST /tag/ | return body
-
 
 ## Authentication API here
 

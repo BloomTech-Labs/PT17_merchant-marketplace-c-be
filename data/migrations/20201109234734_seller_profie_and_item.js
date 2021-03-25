@@ -8,6 +8,14 @@ exports.up = function (knex) {
       tb.string('physical_address', 255);
       tb.text('description');
     })
+    .createTable('buyer_profile', (tb) => {
+      tb.increments();
+      tb.string('buyer_name', 255);
+      tb.string('email_address', 255);
+      tb.string('physical_address', 255);
+      tb.string('avatarUrl').nullable();
+      tb.string('description');
+    })
     .createTable('category', (tb) => {
       tb.increments();
       tb.string('category_name', 255);
@@ -83,5 +91,6 @@ exports.down = function (knex) {
     .dropTableIfExists('item')
     .dropTableIfExists('tag')
     .dropTableIfExists('category')
-    .dropTableIfExists('seller_profile');
+    .dropTableIfExists('seller_profile')
+    .dropTableIfExists('buyer_profile');
 };
