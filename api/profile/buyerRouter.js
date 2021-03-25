@@ -80,5 +80,22 @@ router.put('/:id', authRequired, function (req, res) {
       });
   }
 });
+router.delete('/:id', authRequired, function (req, res) {
+  const id = req.params.id;
+  try {
+    Model.findById('buyer_profile', id).then((profile) => {
+      Model.remove('buyer_profile', profile.id).then(() => {
+        res
+          .status(200)
+          .json({ message: `Profile '${id}' was deleted.`, profile: profile });
+      });
+    });
+  } catch (err) {
+    res.status(500).json({
+      message: `Could not delete profile with ID: ${id}`,
+      error: err.message,
+    });
+  }
+});
 
 module.exports = router;
