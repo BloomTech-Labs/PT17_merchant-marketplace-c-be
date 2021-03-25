@@ -53,7 +53,7 @@ router.post('/', authRequired, async (req, res) => {
   }
 });
 
-router.put('/:id', function (req, res) {
+router.put('/:id', authRequired, function (req, res) {
   const profile = req.body;
   const id = String(req.params.id);
   if (profile) {
