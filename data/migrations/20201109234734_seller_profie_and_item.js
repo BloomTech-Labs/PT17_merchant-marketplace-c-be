@@ -13,6 +13,7 @@ exports.up = function (knex) {
       tb.string('buyer_name', 255);
       tb.string('email_address', 255);
       tb.string('physical_address', 255);
+      tb.string('avatarUrl');
       tb.string('description');
     })
     .createTable('category', (tb) => {
