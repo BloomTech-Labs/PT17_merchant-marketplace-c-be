@@ -76,22 +76,6 @@ router.put('/:productId', authRequired, async (req, res) => {
 router.delete('/:productId/', authRequired, async (req, res) => {
   endpointCreator.deleteData('item', req, res);
 });
-//POST items and tags are connected
-router.post('/:itemID/tag/:tagID', authRequired, async (req, res) => {
-  const { itemID, tagID } = req.params;
-  const response = await Model.connectItemsAndTags(itemID, tagID);
-  try {
-    if (response) {
-      res
-        .status(200)
-        .json({ message: `You have added tag: ${tagID} to item: ${itemID}` });
-    } else {
-      res.status(404).json({ message: 'You cannot add this tag' });
-    }
-  } catch (err) {
-    helper.dbError(res);
-  }
-});
 
 //POST items and categories are connected
 router.post('/:itemID/categories/:catID', async (req, res) => {

@@ -64,22 +64,6 @@ exports.up = function (knex) {
         .inTable('category')
         .onDelete('CASCADE')
         .onUpdate('CASCADE');
-    })
-    .createTable('tag_item', (tb) => {
-      tb.integer('item_id')
-        .unsigned()
-        .notNullable()
-        .references('id')
-        .inTable('item')
-        .onDelete('CASCADE')
-        .onUpdate('CASCADE');
-      tb.integer('tag_id')
-        .unsigned()
-        .notNullable()
-        .references('id')
-        .inTable('tag')
-        .onDelete('CASCADE')
-        .onUpdate('CASCADE');
     });
 };
 
@@ -89,7 +73,6 @@ exports.down = function (knex) {
     .dropTableIfExists('category_item')
     .dropTableIfExists('photo')
     .dropTableIfExists('item')
-    .dropTableIfExists('tag')
     .dropTableIfExists('category')
     .dropTableIfExists('seller_profile')
     .dropTableIfExists('buyer_profile');
