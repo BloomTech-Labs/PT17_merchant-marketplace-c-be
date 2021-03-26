@@ -75,7 +75,6 @@ const getItemByCategoryID = async (categoryID) => {
     .where({ 'ci.category_id': categoryID });
   // 'i.published': 'true'
 };
-
 // connect items and tags
 const connectItemsAndTags = async (itemID, tagID) => {
   return db('tag_item').insert({ item_id: itemID, tag_id: tagID });
