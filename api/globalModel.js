@@ -71,6 +71,18 @@ const getPhotoByItemID = async (itemID) => {
   return db('photo').where({ item_id: itemID }).select('*');
 };
 
+// GET items by category id
+// do we want to make sure the item is published?
+const getItemByCategoryID = async (categoryID) => {
+  return db('item as i')
+    .join('category_item as ci', {
+      'ci.item_id': 'i.id',
+    })
+    .select('i.*', 'ci.category_id')
+    .where({ 'ci.category_id': categoryID });
+  // 'i.published': 'true'
+};
+
 // connect items and tags
 const connectItemsAndTags = async (itemID, tagID) => {
   return db('tag_item').insert({ item_id: itemID, tag_id: tagID });
@@ -95,6 +107,7 @@ module.exports = {
   getTagByItemId,
   createAndInsertById,
   getPhotoByItemID,
+  getItemByCategoryID,
   createBySellerID,
   connectItemsAndCategories,
   connectItemsAndTags,
