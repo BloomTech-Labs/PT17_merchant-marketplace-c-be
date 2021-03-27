@@ -50,6 +50,16 @@ const findOrCreate = async (text, obj) => {
   }
 };
 
+// GET items based on category
+const getItemByCategoryID = async (categoryID) => {
+  return db('item as i')
+    .join('category_item as ci', {
+      'ci.item_id': 'i.id',
+    })
+    .select('i.*', 'ci.category_id')
+    .where({ 'ci.category_id': categoryID, 'i.published': true });
+};
+
 // GET info from join table
 const getCategoryItem = async (itemID) => {
   return db('item as i')
@@ -84,4 +94,5 @@ module.exports = {
   getPhotoByItemID,
   createBySellerID,
   connectItemsAndCategories,
+  getItemByCategoryID,
 };
