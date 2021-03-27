@@ -40,7 +40,7 @@ router.get('/category/:categoryID', authRequired, async (req, res) => {
   try {
     const response = await Model.getItemByCategoryID(Number(categoryID));
 
-    if (response.length == 0) {
+    if (response.length === 0) {
       res.status(404).json({
         message: `Category with id ${categoryID} is empty or does not exist`,
       });
