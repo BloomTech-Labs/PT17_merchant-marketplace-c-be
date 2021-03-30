@@ -49,14 +49,17 @@ const findOrCreate = async (text, obj) => {
     });
   }
 };
-// GET info from join table
-const getTagByItemId = async (itemID) => {
+
+// GET items based on category
+const getItemByCategoryID = async (categoryID) => {
   return db('item as i')
-    .join('tag_item as ti', 'i.id', 'ti.item_id')
-    .join('tag as t', 't.id', 'ti.tag_id')
-    .where('ti.item_id', itemID)
-    .returning('*');
+    .join('category_item as ci', {
+      'ci.item_id': 'i.id',
+    })
+    .select('i.*', 'ci.category_id')
+    .where({ 'ci.category_id': categoryID, 'i.published': true });
 };
+
 // GET info from join table
 const getCategoryItem = async (itemID) => {
   return db('item as i')
@@ -69,11 +72,6 @@ const getCategoryItem = async (itemID) => {
 // GET info from join table
 const getPhotoByItemID = async (itemID) => {
   return db('photo').where({ item_id: itemID }).select('*');
-};
-
-// connect items and tags
-const connectItemsAndTags = async (itemID, tagID) => {
-  return db('tag_item').insert({ item_id: itemID, tag_id: tagID });
 };
 
 //connect categories and items
@@ -92,10 +90,9 @@ module.exports = {
   findOrCreate,
   findAllProducts,
   getCategoryItem,
-  getTagByItemId,
   createAndInsertById,
   getPhotoByItemID,
   createBySellerID,
   connectItemsAndCategories,
-  connectItemsAndTags,
+  getItemByCategoryID,
 };
