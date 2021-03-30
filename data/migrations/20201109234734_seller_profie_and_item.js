@@ -29,6 +29,8 @@ exports.up = function (knex) {
         .inTable('seller_profile')
         .onDelete('CASCADE')
         .onUpdate('CASCADE');
+      tb.boolean('pickup');
+      tb.boolean('delivery');
     })
     .createTable('photo', (tb) => {
       tb.increments();
