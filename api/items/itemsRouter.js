@@ -35,6 +35,7 @@ router.get('/:itemID', authRequired, async (req, res) => {
   }
 });
 
+
 // GET all items
 router.get('/', async (req, res) => {
   const { itemID } = req.params;
@@ -48,6 +49,22 @@ router.get('/', async (req, res) => {
       res
         .status(404)
         .json({ message: 'Unable to retrieve available items' })
+
+// GET items by category id
+router.get('/category/:categoryID', authRequired, async (req, res) => {
+  const { categoryID } = req.params;
+
+  try {
+    const response = await Model.getItemByCategoryID(Number(categoryID));
+
+    if (response.length === 0) {
+      res.status(404).json({
+        message: `Category with id ${categoryID} is empty or does not exist`,
+      });
+    } else {
+      console.log(response.length);
+      res.status(200).json(response);
+
     }
   } catch {
     helper.dbError(res);

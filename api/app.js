@@ -21,10 +21,10 @@ const swaggerUIOptions = {
 //###[  Routers ]###
 const indexRouter = require('./index/indexRouter');
 const profileRouter = require('./profile/profileRouter');
+const buyerProfileRouter = require('./profile/buyerRouter');
 
 const itemsRouter = require('./items/itemsRouter');
 
-const tagRouter = require('./tag/tagRouter');
 const photoRouter = require('./photo/photoRouter');
 const categoryRouter = require('./category/categoryRouter');
 
@@ -54,9 +54,9 @@ app.use(cookieParser());
 
 // application routes
 app.use('/', indexRouter);
+app.use(['/buyerProfile', '/buyerProfiles'], buyerProfileRouter);
 app.use(['/profile', '/profiles'], profileRouter);
 app.use(['/item', '/items'], itemsRouter);
-app.use(['/tag', '/tags'], tagRouter);
 app.use(['/photo', '/photos'], photoRouter);
 app.use(['/category', '/categories'], categoryRouter);
 

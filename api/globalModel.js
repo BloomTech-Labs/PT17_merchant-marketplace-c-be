@@ -49,13 +49,15 @@ const findOrCreate = async (text, obj) => {
     });
   }
 };
-// GET info from join table
-const getTagByItemId = async (itemID) => {
+
+// GET items based on category
+const getItemByCategoryID = async (categoryID) => {
   return db('item as i')
-    .join('tag_item as ti', 'i.id', 'ti.item_id')
-    .join('tag as t', 't.id', 'ti.tag_id')
-    .where('ti.item_id', itemID)
-    .returning('*');
+    .join('category_item as ci', {
+      'ci.item_id': 'i.id',
+    })
+    .select('i.*', 'ci.category_id')
+    .where({ 'ci.category_id': categoryID, 'i.published': true });
 };
 
 //GET all items
@@ -65,6 +67,7 @@ const getAllItemInfo = async () => {
     .select('i.item_name', 'i.description', 'i.quantity_available', 'i.price_in_cents', 'i.seller_profile_id' ,'p.url', 'p.id')
     .where({'i.published': true})
 };
+
 
 // GET info from join table
 const getCategoryItem = async (itemID) => {
@@ -78,11 +81,6 @@ const getCategoryItem = async (itemID) => {
 // GET info from join table
 const getPhotoByItemID = async (itemID) => {
   return db('photo').where({ item_id: itemID }).select('*');
-};
-
-// connect items and tags
-const connectItemsAndTags = async (itemID, tagID) => {
-  return db('tag_item').insert({ item_id: itemID, tag_id: tagID });
 };
 
 //connect categories and items
@@ -108,4 +106,6 @@ module.exports = {
   createBySellerID,
   connectItemsAndCategories,
   connectItemsAndTags,
+  getItemByCategoryID,
 };
+
