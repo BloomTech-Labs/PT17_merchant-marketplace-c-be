@@ -57,6 +57,15 @@ const getTagByItemId = async (itemID) => {
     .where('ti.item_id', itemID)
     .returning('*');
 };
+
+//GET all items
+const getAllItemInfo = async (itemID) => {
+  return db('item as i')
+    .join('photo as p', 'i.id', 'p.id')
+    .select('i.item_name', 'i.description', 'i.quantity_available', 'i.price_in_cents', 'i.seller_profile_id' ,'p.url', 'p.id')
+    .where('i.published', itemID)
+};
+
 // GET info from join table
 const getCategoryItem = async (itemID) => {
   return db('item as i')
@@ -93,6 +102,7 @@ module.exports = {
   findAllProducts,
   getCategoryItem,
   getTagByItemId,
+  getAllItemInfo,
   createAndInsertById,
   getPhotoByItemID,
   createBySellerID,
