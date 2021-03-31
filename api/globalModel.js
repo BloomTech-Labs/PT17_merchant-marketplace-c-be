@@ -59,11 +59,11 @@ const getTagByItemId = async (itemID) => {
 };
 
 //GET all items
-const getAllItemInfo = async (itemID) => {
+const getAllItemInfo = async () => {
   return db('item as i')
     .join('photo as p', 'i.id', 'p.id')
     .select('i.item_name', 'i.description', 'i.quantity_available', 'i.price_in_cents', 'i.seller_profile_id' ,'p.url', 'p.id')
-    .where('i.published', itemID)
+    .where({'i.published': true})
 };
 
 // GET info from join table

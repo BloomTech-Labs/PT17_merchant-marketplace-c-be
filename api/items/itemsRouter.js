@@ -43,7 +43,7 @@ router.get('/', async (req, res) => {
     if (response) {
       res
         .status(200)
-        .json({ message: `Retrieved all available items` });
+        .json({ message: `Retrieved all available items`, items: response });
     } else {
       res
         .status(404)
