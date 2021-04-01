@@ -49,6 +49,11 @@ router.get('/', async (req, res) => {
       res
         .status(404)
         .json({ message: 'Unable to retrieve available items' })
+      }
+    } catch {
+      helper.dbError(res);
+    }
+  });
 
 // GET items by category id
 router.get('/category/:categoryID', authRequired, async (req, res) => {
