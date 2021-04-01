@@ -33,6 +33,26 @@ router.get('/:itemID', authRequired, async (req, res) => {
   }
 });
 
+// GET items by category id
+router.get('/category/:categoryID', authRequired, async (req, res) => {
+  const { categoryID } = req.params;
+
+  try {
+    const response = await Model.getItemByCategoryID(Number(categoryID));
+
+    if (response.length === 0) {
+      res.status(404).json({
+        message: `Category with id ${categoryID} is empty or does not exist`,
+      });
+    } else {
+      console.log(response.length);
+      res.status(200).json(response);
+    }
+  } catch {
+    helper.dbError(res);
+  }
+});
+
 // POST profile can create an item
 router.post('/', authRequired, async (req, res) => {
   endpointCreator.createData('item', req, res);
@@ -55,22 +75,6 @@ router.put('/:productId', authRequired, async (req, res) => {
 // DELETE profile can delete an item
 router.delete('/:productId/', authRequired, async (req, res) => {
   endpointCreator.deleteData('item', req, res);
-});
-//POST items and tags are connected
-router.post('/:itemID/tag/:tagID', authRequired, async (req, res) => {
-  const { itemID, tagID } = req.params;
-  const response = await Model.connectItemsAndTags(itemID, tagID);
-  try {
-    if (response) {
-      res
-        .status(200)
-        .json({ message: `You have added tag: ${tagID} to item: ${itemID}` });
-    } else {
-      res.status(404).json({ message: 'You cannot add this tag' });
-    }
-  } catch (err) {
-    helper.dbError(res);
-  }
 });
 
 //POST items and categories are connected
