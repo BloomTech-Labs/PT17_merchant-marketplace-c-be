@@ -64,10 +64,17 @@ const getItemByCategoryID = async (categoryID) => {
 const getAllItemInfo = async () => {
   return db('item as i')
     .join('photo as p', 'i.id', 'p.id')
-    .select('i.item_name', 'i.description', 'i.quantity_available', 'i.price_in_cents', 'i.seller_profile_id' ,'p.url', 'p.id')
-    .where({'i.published': true})
+    .select(
+      'i.item_name',
+      'i.description',
+      'i.quantity_available',
+      'i.price_in_cents',
+      'i.seller_profile_id',
+      'p.url',
+      'p.id'
+    )
+    .where({ 'i.published': true });
 };
-
 
 // GET info from join table
 const getCategoryItem = async (itemID) => {
@@ -99,13 +106,10 @@ module.exports = {
   findOrCreate,
   findAllProducts,
   getCategoryItem,
-  getTagByItemId,
   getAllItemInfo,
   createAndInsertById,
   getPhotoByItemID,
   createBySellerID,
   connectItemsAndCategories,
-  connectItemsAndTags,
   getItemByCategoryID,
 };
-
