@@ -44,7 +44,7 @@ const authRequired = async (req, res, next) => {
         } else if (buyerProfile) {
           req.profile = sellerProfile;
         } else {
-          throw new Error('Undable to process idToken');
+          throw new Error('Unable to process idToken');
         }
         next();
       });
