@@ -25,7 +25,6 @@ exports.up = function (knex) {
       tb.string('categories', 255);
       tb.string('buyer_profile_id')
         .notNullable()
-        .notNullable()
         .references('id')
         .inTable('buyer_profile')
         .onDelete('CASCADE')
