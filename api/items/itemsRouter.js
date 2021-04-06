@@ -35,7 +35,6 @@ router.get('/:itemID', authRequired, async (req, res) => {
   }
 });
 
-
 // GET all items
 router.get('/', async (req, res) => {
   const { itemID } = req.params;
@@ -46,14 +45,12 @@ router.get('/', async (req, res) => {
         .status(200)
         .json({ message: `Retrieved all available items`, items: response });
     } else {
-      res
-        .status(404)
-        .json({ message: 'Unable to retrieve available items' })
-      }
-    } catch {
-      helper.dbError(res);
+      res.status(404).json({ message: 'Unable to retrieve available items' });
     }
-  });
+  } catch {
+    helper.dbError(res);
+  }
+});
 
 // GET items by category id
 router.get('/category/:categoryID', authRequired, async (req, res) => {
@@ -69,7 +66,6 @@ router.get('/category/:categoryID', authRequired, async (req, res) => {
     } else {
       console.log(response.length);
       res.status(200).json(response);
-
     }
   } catch {
     helper.dbError(res);
