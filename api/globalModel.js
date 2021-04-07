@@ -76,6 +76,21 @@ const getAllItemInfo = async () => {
     .where({ 'i.published': true });
 };
 
+const search = async (query) => {
+  return db('item as i')
+    .join('photo as p', 'i.id', 'p.id')
+    .select(
+      'i.item_name',
+      'i.description',
+      'i.quantity_available',
+      'i.price_in_cents',
+      'i.seller_profile_id',
+      'p.url',
+      'p.id'
+    )
+    .where('i.item_name', 'ilike', `%${query}%`);
+};
+
 // GET info from join table
 const getCategoryItem = async (itemID) => {
   return db('item as i')
@@ -112,4 +127,5 @@ module.exports = {
   createBySellerID,
   connectItemsAndCategories,
   getItemByCategoryID,
+  search,
 };
