@@ -22,12 +22,12 @@ exports.up = function (knex) {
     })
     .createTable('favorite_category', (tb) => {
       tb.increments();
-      tb.string('categories', 255)
+      tb.integer('category_id')
         .references('category_name')
         .inTable('category')
         .onDelete('CASCADE')
         .onUpdate('CASCADE');
-      tb.string('buyer_profile_id')
+      tb.integer('buyer_profile_id')
         .notNullable()
         .references('id')
         .inTable('buyer_profile')
