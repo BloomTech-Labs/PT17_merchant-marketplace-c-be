@@ -76,6 +76,7 @@ const getAllItemInfo = async () => {
     .where({ 'i.published': true });
 };
 
+// user provides a query, this is compared to item names in the database
 const search = async (query) => {
   return db('item as i')
     .join('photo as p', 'i.id', 'p.id')
