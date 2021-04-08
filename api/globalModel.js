@@ -1,4 +1,5 @@
 const db = require('../data/db-config');
+const { all } = require('./app');
 
 const findAll = async (text) => {
   return await db(text);
@@ -82,6 +83,13 @@ const getAllItemInfo = async (query) => {
   // }
   if (query['q']) {
     allItems.where('i.item_name', 'ilike', `%${query['q']}%`);
+  }
+  // sort by price high first
+  if (query['pH']) {
+    allItems.orderBy('price_in_cents', 'desc');
+  }
+  if (query['pL']) {
+    allItems.orderBy('price_in_cents', 'asc');
   }
   return allItems.where({ 'i.published': true });
 };
