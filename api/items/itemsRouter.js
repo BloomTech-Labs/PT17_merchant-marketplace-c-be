@@ -4,6 +4,7 @@ const Model = require('../globalModel');
 const endpointCreator = require('../endPoints');
 const helper = require('../helper');
 const router = express.Router();
+const queryString = require('../middleware/query_string');
 
 // GET items by profile ID
 router.get('/profile/:profileID/', authRequired, async (req, res) => {
@@ -36,7 +37,7 @@ router.get('/:itemID', authRequired, async (req, res) => {
 });
 
 // GET all items
-router.get('/', async (req, res) => {
+router.get('/', queryString, async (req, res) => {
   const { itemID } = req.params;
   const response = await Model.getAllItemInfo('item', itemID);
   try {
