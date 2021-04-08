@@ -53,11 +53,13 @@ const findOrCreate = async (text, obj) => {
 
 // GET items based on category
 const getItemByCategoryID = async (categoryID) => {
+  console.log('hello');
   return db('item as i')
     .join('category_item as ci', {
       'ci.item_id': 'i.id',
     })
-    .select('i.*', 'ci.category_id')
+    .join('photo as p', { 'i.id': 'p.id' })
+    .select('i.*', 'ci.category_id', 'p.url')
     .where({ 'ci.category_id': categoryID, 'i.published': true });
 };
 
@@ -74,7 +76,6 @@ const getAllItemInfo = async (query) => {
       'p.url',
       'p.id'
     );
-  // .where({ 'i.published': true });
   // params: q, c, pH, pL
 
   // need to figure out way to first filter by category
@@ -85,10 +86,11 @@ const getAllItemInfo = async (query) => {
     allItems.where('i.item_name', 'ilike', `%${query['q']}%`);
   }
   // sort by price high first
-  if (query['pH']) {
+  if (query['p'] === 'desc') {
     allItems.orderBy('price_in_cents', 'desc');
   }
-  if (query['pL']) {
+  // sort price low first
+  if (query['p'] === 'asc') {
     allItems.orderBy('price_in_cents', 'asc');
   }
   return allItems.where({ 'i.published': true });
