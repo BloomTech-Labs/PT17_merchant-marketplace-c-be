@@ -1,4 +1,3 @@
-
 exports.seed = function (knex) {
   // Inserts seed entries
   return knex('item').insert([
@@ -40,7 +39,7 @@ exports.seed = function (knex) {
       item_name: 'Rocking Chair',
       quantity_available: 5,
       price_in_cents: 4400000,
-      description:'Country Porch Staple',
+      description: 'Country Porch Staple',
       published: true,
       pickup: false,
       delivery: true,
