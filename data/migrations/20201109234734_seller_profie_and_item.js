@@ -9,7 +9,7 @@ exports.up = function (knex) {
       tb.text('description');
     })
     .createTable('buyer_profile', (tb) => {
-      tb.increments();
+      tb.string('id', 255).unique().notNullable().primary();
       tb.string('buyer_name', 255);
       tb.string('email_address', 255);
       tb.string('physical_address', 255);
@@ -23,11 +23,11 @@ exports.up = function (knex) {
     .createTable('favorite_category', (tb) => {
       tb.increments();
       tb.integer('category_id')
-        .references('category_name')
+        .references('id')
         .inTable('category')
         .onDelete('CASCADE')
         .onUpdate('CASCADE');
-      tb.integer('buyer_profile_id')
+      tb.string('buyer_profile_id')
         .notNullable()
         .references('id')
         .inTable('buyer_profile')
@@ -81,8 +81,8 @@ exports.up = function (knex) {
 
 exports.down = function (knex) {
   return knex.schema
-    .dropTableIfExists('favorite_category')
     .dropTableIfExists('category_item')
+    .dropTableIfExists('favorite_category')
     .dropTableIfExists('photo')
     .dropTableIfExists('item')
     .dropTableIfExists('category')
