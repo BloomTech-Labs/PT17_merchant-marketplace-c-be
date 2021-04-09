@@ -1,32 +1,13 @@
 # merchant-marketplace
 
-🚫 Note: All lines that start with 🚫 are instructions and should be deleted before this is posted to your first Pull-Request is merged. This is intended to be a guideline. Feel free to add your own flare to it.
-
-# Project
-
-You can find the deployed project at [🚫URL NAME GOES HERE](🚫copy and paste URL here).
-
-## Contributors
-
-🚫Add link to seperate contributor page
-
-<br/>
-
-🚫 Optional examples of using images with links for your tech stack, make sure to change these to fit your project
-
 ![MIT](https://img.shields.io/packagist/l/doctrine/orm.svg)
-![node express](https://img.shields.io/node/v-lts/express)
-![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)
+![Quality Score](https://www.code-inspector.com/project/21037/status/svg)
 
 🚫 more info on using badges [here](https://github.com/badges/shields)
 
 ### Key Features
 
 - feature one
-- feature two
-- feature three
-- feature four
-- feature five
 
 #### Front end deployed to `🚫insert service here`
 
@@ -42,73 +23,7 @@ You can find the deployed project at [🚫URL NAME GOES HERE](🚫copy and paste
 
 # APIs
 
-🚫 replace list below with a link to live swagger doc
-
-Profiles
-| Request | Returns |
-| ----- | ----- |
-| GET /profile/
-| GET /profile/:id/
-| POST /profile/ | returns body and message
-| PUT /profile | returns body and message
-| DELETE /profile/:id/
-
-POSTING ITEMS
-| Request | Returns |
-| ----- | ----- |
-| GET /item/profile/:profileId/
-| GET /item/:itemId/ | returns body
-| POST /item/ | don’t forget to post seller_profile_id
-| PUT /item/:id | returns body
-| DELETE /item/:id/ | returns id
-
-TAG_ITEM
-| Request | Returns |
-| ----- | ----- |
-| POST /item/:itemId/tag/:tagId/
-
-CATEGORY_ITEM
-| Request | Returns |
-| ----- | ----- |
-| POST /item/:itemId/categories/:catId/
-
-PHOTO
-| Request | Returns |
-| ----- | ----- |
-| GET /photo/:item_id/ | return body
-| POST /photo/ | return body. Don’t forget to post item_id
-
-CATEGORY
-| Request | Returns |
-| ----- | ----- |
-| GET /category/ | return list of categories
-| GET /category/:itemId/
-| POST /category/ | return body
-
-TAG
-| Request | Returns |
-| ----- | ----- |
-| GET /tag/ | return list of tags
-| GET /tag/item/:itemId/ | return items with tags
-| POST /tag/ | return body
-
-## Authentication API here
-
-🚫Replace text below with a description and link to your API swagger docs
-
-Water's like me. It's laaazy ... Boy, it always looks for the easiest way to do things A little happy sunlight shining through there. Let all these little things happen. Don't fight them. Learn to use them. Even the worst thing we can do here is good.
-
-## Payment API here
-
-🚫Replace text below with a description of the API or delete
-
-This is the way you take out your flustrations. Get away from those little Christmas tree things we used to make in school. Isn't it fantastic that you can change your mind and create all these happy things? Everything's not great in life, but we can still find beauty in it.
-
-## Misc API here
-
-🚫Replace text below with a description of the API
-
-You can do anything your heart can imagine. In life you need colors. This is where you take out all your hostilities and frustrations. It's better than kicking the puppy dog around and all that so. I'm sort of a softy, I couldn't shoot Bambi except with a camera. Trees get lonely too, so we'll give him a little friend. We'll lay all these little funky little things in there.
+🚫 replace with a link to live swagger doc
 
 ## Getting Started
 
