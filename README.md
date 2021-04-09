@@ -1,7 +1,7 @@
 # merchant-marketplace
 
 ![MIT](https://img.shields.io/packagist/l/doctrine/orm.svg)
-![Quality Score](https://www.code-inspector.com/project/21037/status/svg)
+[![Quality Score](https://www.code-inspector.com/project/21037/status/svg)](https://frontend.code-inspector.com/public/project/21037/PT17_merchant-marketplace-c-be/dashboard)
 
 🚫 more info on using badges [here](https://github.com/badges/shields)
 
