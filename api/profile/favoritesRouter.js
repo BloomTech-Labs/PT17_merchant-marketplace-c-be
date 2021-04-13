@@ -30,7 +30,7 @@ router.post('/favorites', authRequired, function (req, res) {
 });
 
 router.delete('/favorites', authRequired, function (req, res) {
-  const favoriteid = req.body.favoriteid;
+  const favoriteid = req.params.id;
   try {
     Model.findById('favorite_category', favoriteid)
       .then(() => {
