@@ -40,7 +40,7 @@ const remove = async (text, id) => {
 };
 
 const favorites = async (id) => {
-  return db('favorite_category as fc')
+  return db('favorite_category as fc ')
     .join('buyer_profile as bp', 'bp.id', 'fc.buyer_profile_id')
     .where({ 'fc.buyer_profile_id': id })
     .returning('*');
