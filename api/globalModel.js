@@ -65,8 +65,9 @@ const getItemByCategoryID = async (categoryID) => {
 
 //GET all items master model for db search
 const getAllItemInfo = async (query) => {
-  const allItems = db('item as i')
+  let allItems = db('item as i')
     .join('photo as p', 'i.id', 'p.id')
+    .join('category_item as ci', 'ci.item_id', 'i.id')
     .select(
       'i.item_name',
       'i.description',
@@ -74,14 +75,17 @@ const getAllItemInfo = async (query) => {
       'i.price_in_cents',
       'i.seller_profile_id',
       'p.url',
-      'p.id'
+      'p.id',
+      'ci.category_id'
     );
   // params: q, c, pH, pL
 
   // need to figure out way to first filter by category
-  // if (query['c']) {
-  //   allItems.where('')
-  // }
+  if (query['c']) {
+    // will get all items matching category
+    // want to compare item_id from category_item to id from allItems
+    allItems.where('ci.category_id', '=', `${query['c']}`);
+  }
   if (query['q']) {
     allItems.where('i.item_name', 'ilike', `%${query['q']}%`);
   }
