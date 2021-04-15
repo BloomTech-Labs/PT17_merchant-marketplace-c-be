@@ -2,6 +2,7 @@
 
 ![MIT](https://img.shields.io/packagist/l/doctrine/orm.svg)
 [![Quality Score](https://www.code-inspector.com/project/21037/status/svg)](https://frontend.code-inspector.com/public/project/21037/PT17_merchant-marketplace-c-be/dashboard)
+[![Maintainability](https://api.codeclimate.com/v1/badges/884d8a63e94f18863d39/maintainability)](https://codeclimate.com/repos/6077957a73f308463b005288/maintainability)
 
 🚫 more info on using badges [here](https://github.com/badges/shields)
 
