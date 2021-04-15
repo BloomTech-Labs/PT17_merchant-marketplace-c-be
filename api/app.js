@@ -27,6 +27,7 @@ const itemsRouter = require('./items/itemsRouter');
 
 const photoRouter = require('./photo/photoRouter');
 const categoryRouter = require('./category/categoryRouter');
+const favoritesRouter = require('./profile/favoritesRouter');
 
 const app = express();
 
@@ -59,6 +60,7 @@ app.use(['/profile', '/profiles'], profileRouter);
 app.use(['/item', '/items'], itemsRouter);
 app.use(['/photo', '/photos'], photoRouter);
 app.use(['/category', '/categories'], categoryRouter);
+app.use(['/favorite', '/favorites'], favoritesRouter);
 
 //catch 404 and forward to error handler
 app.use(function (req, res, next) {
