@@ -137,9 +137,5 @@ module.exports = {
   createBySellerID,
   connectItemsAndCategories,
   getItemByCategoryID,
-<<<<<<< HEAD
-=======
   favorites,
-  search,
->>>>>>> 66c1d6ef68b5500bf9db8814ceaec55b0eb87d53
 };
