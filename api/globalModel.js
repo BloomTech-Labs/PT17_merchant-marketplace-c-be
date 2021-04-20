@@ -67,9 +67,9 @@ const getItemByCategoryID = async (categoryID) => {
     .where({ 'ci.category_id': categoryID, 'i.published': true });
 };
 
-//GET all items
-const getAllItemInfo = async () => {
-  return db('item as i')
+//GET all items master model for db search
+const getAllItemInfo = async (query) => {
+  const allItems = db('item as i')
     .join('photo as p', 'i.id', 'p.id')
     .select(
       'i.item_name',
@@ -79,23 +79,25 @@ const getAllItemInfo = async () => {
       'i.seller_profile_id',
       'p.url',
       'p.id'
-    )
-    .where({ 'i.published': true });
-};
+    );
+  // .where({ 'i.published': true });
+  // params: q, c, pH, pL
 
-const search = async (query) => {
-  return db('item as i')
-    .join('photo as p', 'i.id', 'p.id')
-    .select(
-      'i.item_name',
-      'i.description',
-      'i.quantity_available',
-      'i.price_in_cents',
-      'i.seller_profile_id',
-      'p.url',
-      'p.id'
-    )
-    .where('i.item_name', 'ilike', `%${query}%`);
+  // need to figure out way to first filter by category
+  // if (query['c']) {
+  //   allItems.where('')
+  // }
+  if (query['q']) {
+    allItems.where('i.item_name', 'ilike', `%${query['q']}%`);
+  }
+  // sort by price high first
+  if (query['pH']) {
+    allItems.orderBy('price_in_cents', 'desc');
+  }
+  if (query['pL']) {
+    allItems.orderBy('price_in_cents', 'asc');
+  }
+  return allItems.where({ 'i.published': true });
 };
 
 // GET info from join table
@@ -135,5 +137,4 @@ module.exports = {
   connectItemsAndCategories,
   getItemByCategoryID,
   favorites,
-  search,
 };
