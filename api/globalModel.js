@@ -39,6 +39,13 @@ const remove = async (text, id) => {
   return await db(text).where({ id }).del();
 };
 
+const favorites = async (id) => {
+  return db('favorite_category as fc ')
+    .join('buyer_profile as bp', 'bp.id', 'fc.buyer_profile_id')
+    .where({ 'fc.buyer_profile_id': id })
+    .returning('*');
+};
+
 const findOrCreate = async (text, obj) => {
   const foundObj = await findById(text, obj.id).then((obj) => obj);
   if (foundObj) {
@@ -135,4 +142,5 @@ module.exports = {
   createBySellerID,
   connectItemsAndCategories,
   getItemByCategoryID,
+  favorites,
 };

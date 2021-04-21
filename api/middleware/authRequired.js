@@ -35,10 +35,12 @@ const authRequired = async (req, res, next) => {
           'seller_profile',
           jwtUserObj
         );
-        const buyerProfile = await Model.findOrCreate(
-          'buyer_profile',
-          jwtUserObj
-        );
+        const buyerProfile = null;
+        // this flow doesnt work, causes unexpected problems of creating a buyer profile when its not needed
+        // await Model.findOrCreate(
+        //   'buyer_profile',
+        //   jwtUserObj
+        // );
         if (sellerProfile) {
           req.profile = sellerProfile;
         } else if (buyerProfile) {
