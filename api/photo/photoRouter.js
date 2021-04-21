@@ -5,7 +5,7 @@ const router = express.Router();
 const endpointCreator = require('../endPoints');
 
 // GET a photos item id
-router.get('/:itemID', authRequired, async (req, res) => {
+router.get('/:itemID', async (req, res) => {
   const { itemID } = req.params;
   const response = await Model.getPhotoByItemID(itemID);
   if (response) {
