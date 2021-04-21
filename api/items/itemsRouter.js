@@ -21,7 +21,7 @@ router.get('/profile/:profileID/', authRequired, async (req, res) => {
 });
 
 // get item by id
-router.get('/:itemID', authRequired, async (req, res) => {
+router.get('/:itemID', async (req, res) => {
   const { itemID } = req.params;
   const response = await Model.findAllProducts('item', itemID);
   try {
