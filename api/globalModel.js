@@ -1,5 +1,4 @@
 const db = require('../data/db-config');
-const { all } = require('./app');
 
 const findAll = async (text) => {
   return await db(text);
