@@ -59,18 +59,21 @@ const findOrCreate = async (text, obj) => {
 
 // GET items based on category
 const getItemByCategoryID = async (categoryID) => {
+  console.log('hello');
   return db('item as i')
     .join('category_item as ci', {
       'ci.item_id': 'i.id',
     })
-    .select('i.*', 'ci.category_id')
+    .join('photo as p', { 'i.id': 'p.id' })
+    .select('i.*', 'ci.category_id', 'p.url')
     .where({ 'ci.category_id': categoryID, 'i.published': true });
 };
 
 //GET all items master model for db search
 const getAllItemInfo = async (query) => {
-  const allItems = db('item as i')
+  let allItems = db('item as i')
     .join('photo as p', 'i.id', 'p.id')
+    .join('category_item as ci', 'ci.item_id', 'i.id')
     .select(
       'i.item_name',
       'i.description',
@@ -78,23 +81,26 @@ const getAllItemInfo = async (query) => {
       'i.price_in_cents',
       'i.seller_profile_id',
       'p.url',
-      'p.id'
+      'p.id',
+      'ci.category_id'
     );
-  // .where({ 'i.published': true });
   // params: q, c, pH, pL
 
   // need to figure out way to first filter by category
-  // if (query['c']) {
-  //   allItems.where('')
-  // }
+  if (query['c']) {
+    // will get all items matching category
+    // want to compare item_id from category_item to id from allItems
+    allItems.where('ci.category_id', '=', `${query['c']}`);
+  }
   if (query['q']) {
     allItems.where('i.item_name', 'ilike', `%${query['q']}%`);
   }
   // sort by price high first
-  if (query['pH']) {
+  if (query['p'] === 'desc') {
     allItems.orderBy('price_in_cents', 'desc');
   }
-  if (query['pL']) {
+  // sort price low first
+  if (query['p'] === 'asc') {
     allItems.orderBy('price_in_cents', 'asc');
   }
   return allItems.where({ 'i.published': true });
