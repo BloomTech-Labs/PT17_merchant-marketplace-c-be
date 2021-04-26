@@ -5,12 +5,12 @@ const endpointCreator = require('../endPoints');
 const router = express.Router();
 
 // GET all categories
-router.get('/', authRequired, async (req, res) => {
+router.get('/', async (req, res) => {
   endpointCreator.findAllData('category', req, res);
 });
 
 // GET all categories for an item
-router.get('/:itemID', authRequired, async (req, res) => {
+router.get('/:itemID', async (req, res) => {
   const { itemID } = req.params;
   const response = await Model.getCategoryItem(itemID);
   if (response) {
