@@ -6,7 +6,7 @@ const helper = require('../helper');
 const router = express.Router();
 
 // GET items by profile ID
-router.get('/profile/:profileID/', authRequired, async (req, res) => {
+router.get('/profile/:profileID/', async (req, res) => {
   const profileID = String(req.params.profileID);
   const response = await Model.findItemByProfile(profileID);
   try {
@@ -54,27 +54,24 @@ router.get('/', async (req, res) => {
 });
 
 // GET items by category id
-router.get(
-  '/category/:categoryID',
-  /* authRequired,*/ async (req, res) => {
-    const { categoryID } = req.params;
+router.get('/category/:categoryID', async (req, res) => {
+  const { categoryID } = req.params;
 
-    try {
-      const response = await Model.getItemByCategoryID(Number(categoryID));
+  try {
+    const response = await Model.getItemByCategoryID(Number(categoryID));
 
-      if (response.length === 0) {
-        res.status(404).json({
-          message: `Category with id ${categoryID} is empty or does not exist`,
-        });
-      } else {
-        console.log(response.length);
-        res.status(200).json(response);
-      }
-    } catch {
-      helper.dbError(res);
+    if (response.length === 0) {
+      res.status(404).json({
+        message: `Category with id ${categoryID} is empty or does not exist`,
+      });
+    } else {
+      console.log(response.length);
+      res.status(200).json(response);
     }
+  } catch {
+    helper.dbError(res);
   }
-);
+});
 
 // POST profile can create an item
 router.post('/', authRequired, async (req, res) => {
